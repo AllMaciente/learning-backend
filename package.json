@@ -6,6 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AllMaciente/learning-backend.git"
+  },
   "author": "AllMaciente",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AllMaciente/learning-backend/issues"
+  },
+  "homepage": "https://github.com/AllMaciente/learning-backend#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
