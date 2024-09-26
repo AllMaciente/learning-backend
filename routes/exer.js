@@ -1,20 +1,17 @@
 const express = require("express");
-const { importarModulos } = require("../utils/dynamicImport");
+const { somar } = require("../service/exercicios");
 
 const router = express.Router();
 
-(async () => {
-  const exer = await importarModulos("../exercicios");
-  console.log("Módulos importados:", exer);
-
-  router.post("/1", (req, res) => {
-    const { code, ret } = exer.exer1(req.body);
-    res.status(code).json(ret);
-  });
-  router.post("/8", (req, res) => {
-    const { code, ret } = exer.exer8(req.body);
-    res.status(code).json(ret);
-  });
-})();
+router.post("/1", (req, res) => {
+  const { num1, num2 } = req.body;
+  const resultado = somar(num1, num2);
+  res.json({ resultado });
+});
+router.post("/1", (req, res) => {
+  const { num1, num2 } = req.body;
+  const resultado = somar(num1, num2);
+  res.json({ resultado });
+});
 
 module.exports = router;
