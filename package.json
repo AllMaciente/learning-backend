@@ -4,13 +4,9 @@
   "description": "O basico de node Curso PJP",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "dev": "node --watch --no-warnings index.js",
     "test": "jest --coverage"
-=======
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch --no-warnings index.js"
->>>>>>> ff15baeef62383e0526ce89f5482cdf7bdb77e75
+
   },
   "repository": {
     "type": "git",

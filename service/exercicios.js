@@ -1,7 +1,10 @@
-// exercicios.js
+//# Estruturação
 
 // 1. Função que solicita dois números reais, realiza a soma e retorna o resultado.
 function somaDoisNumeros(num1, num2) {
+  if (isNaN(num1) || isNaN(num2)) {
+    return "erro";
+  }
   return num1 + num2;
 }
 
@@ -11,17 +14,17 @@ function calculaSalario(valorHora, horasTrabalhadas) {
 }
 
 // 3. Função que calcula a média de peso de 5 pessoas.
-function mediaPeso(pesos) {
-  var somaPesos = 0;
-  for (var i = 0; i < pesos.length; i++) {
-    somaPesos += pesos[i];
+function mediaValores(numbs) {
+  var soma = 0;
+  for (var i = 0; i < numbs.length; i++) {
+    soma += numbs[i];
   }
-  return somaPesos / pesos.length;
+  return soma / numbs.length;
 }
 
 // 4. Função que converte temperatura de Celsius para Fahrenheit.
 function celsiusParaFahrenheit(celsius) {
-  return (9 * celsius / 5) + 32;
+  return (9 * celsius) / 5 + 32;
 }
 
 // 5. Função que converte milhas para quilômetros.
@@ -31,10 +34,9 @@ function milhasParaQuilometros(milhas) {
 
 // 6. Função que converte segundos para horas, minutos e segundos.
 function segundosParaTempo(segundos) {
-  var horas = Math.floor(segundos / 3600);
-  var minutos = Math.floor((segundos % 3600) / 60);
-  var segundosRestantes = segundos % 60;
-  return horas + "h " + minutos + "m " + segundosRestantes + "s";
+  const minutos = segundos / 60;
+  const horas = minutos / 60;
+  return { horas, minutos, segundos };
 }
 
 // 7. Função que converte quilômetros para metros e centímetros.
@@ -42,220 +44,103 @@ function quilometrosParaMetrosCentimetros(quilometros) {
   var metros = quilometros * 1000;
   var centimetros = metros * 100;
   return {
-    metros: metros,
-    centimetros: centimetros,
+    quilometros,
+    metros,
+    centimetros,
   };
 }
 
 // 8. Função que retorna a tabuada de um número.
 function tabuada(numero) {
-  var resultado = [];
+  var resultado = {};
   for (var i = 1; i <= 10; i++) {
-    resultado.push(numero + " x " + i + " = " + (numero * i));
+    resultado[`${i} x ${numero}`] = i * numero;
   }
   return resultado;
 }
 
-// 9. Função que verifica se um número é par ou ímpar.
-function parOuImpar(numero) {
-  if (numero % 2 === 0) {
-    return 'par';
+// # Estrutura de Condição
+
+// 9. FUP que calcule a média aritmética das 3 notas de um aluno e mostre, além do valor da média, uma mensagem de "Aprovado", caso a média seja igual ou superior a 7, a mensagem "Recuperação", caso a média se igual ou superior a 5 e inferior a 7, ou a mensagem “Reprovado”, caso a média seja inferior a 5.
+function notasAluno(notas) {
+  const media = mediaValores(notas);
+  if (media < 5) {
+    return { media, msg: "Reprovado" };
+  } else if (media < 7) {
+    return { media, msg: "Recuperação" };
   } else {
-    return 'ímpar';
+    return { media, msg: "Aprovado" };
+  }
+}
+// 10. FUP que calcule o IMC -solicite se é H ou M e faça o calculo;
+// - para homens: (72.7*h)-58
+// - para mulheres: (62.1*h)-44.7
+function IMC(altura, gen) {
+  if (gen.toUpperCase() == "H") {
+    return 72.7 * altura - 58;
+  } else if (gen.toUpperCase() == "M") {
+    return 62.1 * altura - 44.7;
+  }
+  return "erro";
+}
+
+// 11. FUP que solicite a operação (+,-,/,*) e dois numeros, calcule a operação solicitada e informe o resultado;
+function calc(operacao, numb1, numb2) {
+  switch (operacao) {
+    case "+":
+      return numb1 + numb2;
+    case "-":
+      return numb1 - numb2;
+    case "*":
+      return numb1 * numb2;
+    case "/":
+      return numb1 / numb2;
+    default:
+      return "falta operação";
   }
 }
 
-// 10. Função que calcula a área de um triângulo.
-function areaTriangulo(base, altura) {
-  return (base * altura) / 2;
-}
+// 12. FUP que peça um número e imprima uma mensagem se esse número é positivo ou negativo;
 
-// 11. Função que calcula a área de um círculo.
-function areaCirculo(raio) {
-  return Math.PI * raio * raio;
-}
+// 13. FUP que solicite um numero e veja se ele é par ou impar;
+//     Dica: Pares ou Ímpares? Utilize o resto da divisão:
+//     ` if(num % 2 == 0) `
 
-// 12. Função que converte um número em string em um número inteiro.
-function stringParaInteiro(str) {
-  return parseInt(str, 10);
-}
+// 15. FUP que solicite dois numero e verifique qual é o maior;
+// 16. FUP que leia 3 valores a,b,c e verifique se eles formam ou não um triângulo. Caso os valores formem um triângulo, solicite a base e a altura, calcule (base * altura / 2) e escreva a área deste triângulo. Se não formam triângulo escreva os valores lidos.
+// 17. FUP que calcule o imposto de renda de um contribuinte. Os dados de entrada são: o CPF(int), o número de dependentes e a renda mensal. Para cada dependente será feito um desconto de 5% do salário mínimo por dependente. Os valores da alíquota para cálculo do imposto são:
 
-// 13. Função que verifica se um número é primo.
-function isPrimo(numero) {
-  if (numero <= 1) return false;
-  for (var i = 2; i <= Math.sqrt(numero); i++) {
-    if (numero % i === 0) return false;
-  }
-  return true;
-}
+// # Para melhorar a sua matematica
 
-// 14. Função que retorna o fatorial de um número.
-function fatorial(n) {
-  var resultado = 1;
-  for (var i = 1; i <= n; i++) {
-    resultado *= i;
-  }
-  return resultado;
-}
+// 17. FUP que leia as 3 notas de um aluno e calcule a média final deste aluno. Considerar que a média é ponderada e que o peso das notas é: 2,3 e 5, respectivamente. - media ponderada
+// 18. O custo ao consumidor de um carro novo é a soma do custo de fábrica com a percentagem do distribuidor e dos impostos (aplicados ao custo de fábrica). Supondo que a percentagem do distribuidor seja de 28% e os impostos de 45%, escrever um algoritmo que leia o custo de fábrica de um carro e escreva o custo ao consumidor.
+// 19. FUP que calcule os juros de determinado capital, taxa e tempo informados pelo usuário e apresente na tela o valor do capital informado, os juros e o valor do montante da operação. O valor da taxa deverá ser informado em valores decimais, ex.: 5% informar 0.05 e o tempo devera ser informado em dias.
 
-// 15. Função que inverte uma string.
-function inverterString(str) {
-  var resultado = '';
-  for (var i = str.length - 1; i >= 0; i--) {
-    resultado += str[i];
-  }
-  return resultado;
-}
+// 20. FUP que leia:
+// Fórmula : ValorTotal = (valor1*quant1 + valor2*quant2)*(IPI/100 + 1)
 
-// 16. Função que calcula a soma de um array de números.
-function somaArray(array) {
-  var soma = 0;
-  for (var i = 0; i < array.length; i++) {
-    soma += array[i];
-  }
-  return soma;
-}
+// 21. FUP para uma Investigação Criminal. Faça 8 perguntas para uma pessoa sobre um crime. As perguntas são:
 
-// 17. Função que retorna o maior número de um array.
-function maiorNumero(array) {
-  var maior = array[0];
-  for (var i = 1; i < array.length; i++) {
-    if (array[i] > maior) {
-      maior = array[i];
-    }
-  }
-  return maior;
-}
+// 22. FUP que leia a velocidade permitida em uma via, a velocidade praticada por um motorista, e informe se o mesmo receberá multa ou não, e o valor a pagar. Caso tenha excedido a velocidade em até 20% da permitida, o motorista receberá uma multa de R$ 102,00. Caso tenha excedido a velocidade acima de 20% da permitida, o motorista receberá uma multa de R$ 500,00.
+// # Estrutura de Repetição
 
-// 18. Função que retorna o menor número de um array.
-function menorNumero(array) {
-  var menor = array[0];
-  for (var i = 1; i < array.length; i++) {
-    if (array[i] < menor) {
-      menor = array[i];
-    }
-  }
-  return menor;
-}
+// 23. FUP que solicite um numero e escreva "Batata" enquanto o usuario digita 1;
+// 24. FUP que imprima a tabuada de um numero de 0 a 10;
+// 25. FUP que solicite quantidade de pessoas, depois solicite a altura de cada uma e calcule a media da altura das pessoas;
+// 26. FUP que solicite o peso de 5 pessoas e calcule a media; Imprima o resultado;
+// 27. FUP que calcule o peso de um elevador, onde cada pessoa que entra informa o peso, caso atinga 180KG, o elevador informa que esta no peso maximo;
+// 28. FUP que leia 10 números e verifique quantos destes números são negativos.
 
-// 19. Função que verifica se um número está em um array.
-function numeroNoArray(numero, array) {
-  for (var i = 0; i < array.length; i++) {
-    if (array[i] === numero) {
-      return true;
-    }
-  }
-  return false;
-}
-
-// 20. Função que remove duplicatas de um array.
-function removerDuplicatas(array) {
-  var resultados = [];
-  for (var i = 0; i < array.length; i++) {
-    if (resultados.indexOf(array[i]) === -1) {
-      resultados.push(array[i]);
-    }
-  }
-  return resultados;
-}
-
-// 21. Função que conta quantas vogais existem em uma string.
-function contarVogais(str) {
-  var contador = 0;
-  var vogais = 'aeiouAEIOU';
-  for (var i = 0; i < str.length; i++) {
-    if (vogais.indexOf(str[i]) !== -1) {
-      contador++;
-    }
-  }
-  return contador;
-}
-
-// 22. Função que verifica se uma string é um palíndromo.
-function isPalindromo(str) {
-  var strLimpa = '';
-  for (var i = 0; i < str.length; i++) {
-    if (str[i].match(/[A-Za-z0-9]/)) {
-      strLimpa += str[i].toLowerCase();
-    }
-  }
-  var strInvertida = '';
-  for (var i = strLimpa.length - 1; i >= 0; i--) {
-    strInvertida += strLimpa[i];
-  }
-  return strLimpa === strInvertida;
-}
-
-// 23. Função que gera um número aleatório entre dois limites.
-function numeroAleatorio(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// 24. Função que verifica se um ano é bissexto.
-function isBissexto(ano) {
-  if (ano % 4 === 0) {
-    if (ano % 100 === 0) {
-      if (ano % 400 === 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return true;
-  }
-  return false;
-}
-
-// 25. Função que converte horas em minutos.
-function horasParaMinutos(horas) {
-  return horas * 60;
-}
-
-// 26. Função que calcula a diferença em dias entre duas datas.
-function diferencaDias(data1, data2) {
-  var umDia = 24 * 60 * 60 * 1000; // Milissegundos em um dia
-  return Math.round(Math.abs((data1 - data2) / umDia));
-}
-
-// 27. Função que calcula a hipotenusa de um triângulo retângulo.
-function hipotenusa(a, b) {
-  return Math.sqrt(a * a + b * b);
-}
-
-// 28. Função que conta a quantidade de palavras em uma string.
-function contarPalavras(str) {
-  var palavras = str.trim().split(/\s+/);
-  return palavras.length;
-}
-
-// Exporte todas as funções
 module.exports = {
   somaDoisNumeros,
   calculaSalario,
-  mediaPeso,
+  mediaValores,
   celsiusParaFahrenheit,
   milhasParaQuilometros,
   segundosParaTempo,
   quilometrosParaMetrosCentimetros,
   tabuada,
-  parOuImpar,
-  areaTriangulo,
-  areaCirculo,
-  stringParaInteiro,
-  isPrimo,
-  fatorial,
-  inverterString,
-  somaArray,
-  maiorNumero,
-  menorNumero,
-  numeroNoArray,
-  removerDuplicatas,
-  contarVogais,
-  isPalindromo,
-  numeroAleatorio,
-  isBissexto,
-  horasParaMinutos,
-  diferencaDias,
-  hipotenusa,
-  contarPalavras,
+  notasAlunos: notasAluno,
+  IMC,
+  calc,
 };
