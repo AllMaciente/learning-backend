@@ -7,7 +7,7 @@ app.get("/", (request, response) => {
   response.json({ message: "Hello World!" });
 });
 
-const exerRoute = require("./routes/exer");
+const exerRoute = require("./src/routes/exer");
 
 app.use("/exer", exerRoute);
 

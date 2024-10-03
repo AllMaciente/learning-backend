@@ -1,30 +1,9 @@
 const express = require("express");
-const {
-  calculaSalario,
-  somaDoisNumeros,
-  celsiusParaFahrenheit,
-  milhasParaQuilometros,
-  segundosParaTempo,
-  quilometrosParaMetrosCentimetros,
-  tabuada,
-  mediaValores,
-  notasAlunos,
-  IMC,
-  calc,
-} = require("../service/exercicios");
-
+const ControllerExercicio = require("../controllers/exercicio");
 const router = express.Router();
 
-router.post("/1", (req, res) => {
-  const { num1, num2 } = req.body;
-  const resultado = somaDoisNumeros(num1, num2);
-  res.json({ resultado });
-});
-router.post("/2", (req, res) => {
-  const { valorHora, horasTrabalhadas } = req.body;
-  const resultado = calculaSalario(valorHora, horasTrabalhadas);
-  res.json({ resultado });
-});
+router.post("/1", ControllerExercicio.Exercicio1);
+router.post("/2", ControllerExercicio.Exercicio2);
 
 router.post("/3", (req, res) => {
   const pesos = [
