@@ -5,17 +5,7 @@ const router = express.Router();
 router.post("/1", ControllerExercicio.Exercicio1);
 router.post("/2", ControllerExercicio.Exercicio2);
 
-router.post("/3", (req, res) => {
-  const pesos = [
-    req.body.peso1,
-    req.body.peso2,
-    req.body.peso3,
-    req.body.peso4,
-    req.body.peso5,
-  ];
-  const resultado = mediaValores(pesos);
-  res.json({ resultado });
-});
+router.post("/3", ControllerExercicio.Exercicio3);
 
 router.post("/4", (req, res) => {
   const { celsius } = req.body;

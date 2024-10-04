@@ -4,13 +4,16 @@ class ServiceExercicio {
   // 1. Função que solicita dois números reais, realiza a soma e retorna o resultado.
   SomaDoisNumeros(num1, num2) {
     if (isNaN(num1) || isNaN(num2)) {
-      return "erro";
+      throw new Error("Favor informar números");
     }
     return num1 + num2;
   }
 
   // 2. Função que calcula o salário de um trabalhador baseado no valor da hora e quantidade de horas trabalhadas.
   CalculaSalario(valorHora, horasTrabalhadas) {
+    if (isNaN(valorHora) || isNaN(horasTrabalhadas)) {
+      throw new Error("informe apenas numeros");
+    }
     return valorHora * horasTrabalhadas;
   }
 
@@ -18,6 +21,9 @@ class ServiceExercicio {
   MediaValores(numbs) {
     var soma = 0;
     for (var i = 0; i < numbs.length; i++) {
+      if (isNaN(numbs[i])) {
+        throw new Error(`o valor ${numbs[i]} não e um numero`);
+      }
       soma += numbs[i];
     }
     return soma / numbs.length;

@@ -18,6 +18,17 @@ class ControllerExercicio {
     );
     res.json({ resultado });
   }
+  Exercicio3(req, res) {
+    const pesos = [
+      req.body.peso1,
+      req.body.peso2,
+      req.body.peso3,
+      req.body.peso4,
+      req.body.peso5,
+    ];
+    const resultado = ServiceExercicio.MediaValores(pesos);
+    res.json({ resultado });
+  }
 }
 
 module.exports = new ControllerExercicio();
