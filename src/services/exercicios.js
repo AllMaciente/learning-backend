@@ -31,16 +31,25 @@ class ServiceExercicio {
 
   // 4. Função que converte temperatura de Celsius para Fahrenheit.
   CelsiusParaFahrenheit(celsius) {
+    if (isNaN(celsius)) {
+      throw new Error("informe o valor como numero");
+    }
     return (9 * celsius) / 5 + 32;
   }
 
   // 5. Função que converte milhas para quilômetros.
   MilhasParaQuilometros(milhas) {
+    if (isNaN(milhas)) {
+      throw new Error("informe o valor como numero");
+    }
     return milhas * 1.60934;
   }
 
   // 6. Função que converte segundos para horas, minutos e segundos.
   SegundosParaTempo(segundos) {
+    if (isNaN(segundos)) {
+      throw new Error("informe o valor como numero");
+    }
     const minutos = segundos / 60;
     const horas = minutos / 60;
     return { horas, minutos, segundos };
@@ -48,6 +57,9 @@ class ServiceExercicio {
 
   // 7. Função que converte quilômetros para metros e centímetros.
   QuilometrosParaMetrosCentimetros(quilometros) {
+    if (isNaN(quilometros)) {
+      throw new Error("informe o valor como numero");
+    }
     var metros = quilometros * 1000;
     var centimetros = metros * 100;
     return {
@@ -59,6 +71,9 @@ class ServiceExercicio {
 
   // 8. Função que retorna a tabuada de um número.
   Tabuada(numero) {
+    if (isNaN(numero)) {
+      throw new Error("informe o valor como numero");
+    }
     var resultado = {};
     for (var i = 1; i <= 10; i++) {
       resultado[`${i} x ${numero}`] = i * numero;
@@ -70,7 +85,7 @@ class ServiceExercicio {
 
   // 9. FUP que calcule a média aritmética das 3 notas de um aluno e mostre, além do valor da média, uma mensagem de "Aprovado", caso a média seja igual ou superior a 7, a mensagem "Recuperação", caso a média se igual ou superior a 5 e inferior a 7, ou a mensagem “Reprovado”, caso a média seja inferior a 5.
   NotasAluno(notas) {
-    const media = mediaValores(notas);
+    const media = this.MediaValores(notas);
     if (media < 5) {
       return { media, msg: "Reprovado" };
     } else if (media < 7) {
@@ -83,16 +98,22 @@ class ServiceExercicio {
   // - para homens: (72.7*h)-58
   // - para mulheres: (62.1*h)-44.7
   IMC(altura, gen) {
+    if (isNaN(altura)) {
+      throw new Error("informe a altura como numero");
+    }
     if (gen.toUpperCase() == "H") {
       return 72.7 * altura - 58;
     } else if (gen.toUpperCase() == "M") {
       return 62.1 * altura - 44.7;
     }
-    return "erro";
+    throw new Error("informe H para homens e M para Mulheres");
   }
 
   // 11. FUP que solicite a operação (+,-,/,*) e dois numeros, calcule a operação solicitada e informe o resultado;
   Calc(operacao, numb1, numb2) {
+    if (isNaN(numb1) || isNaN(numb2)) {
+      throw new Error("informe o valor como numero");
+    }
     switch (operacao) {
       case "+":
         return numb1 + numb2;
@@ -103,7 +124,7 @@ class ServiceExercicio {
       case "/":
         return numb1 / numb2;
       default:
-        return "falta operação";
+        throw new Error("operacao invalida");
     }
   }
   // 12. FUP que peça um número e imprima uma mensagem se esse número é positivo ou negativo;
